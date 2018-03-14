@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using LINQtoCSV;
+
 namespace Domain
 {
     public class Contractor
