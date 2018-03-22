@@ -163,7 +163,6 @@ namespace DataAccess
                       TryParseValueType5PledgedVehicles = x[6],
                       TryParseValueType6PledgedVehicles = x[7],
                       TryParseValueType7PledgedVehicles = x[8],
-
                   });
 
                 foreach (var c in data)
