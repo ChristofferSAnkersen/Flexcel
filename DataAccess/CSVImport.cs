@@ -71,6 +71,7 @@ namespace DataAccess
                         try
                         {
                             o.RequiredVehicleType = (listOfRouteNumbers.Find(r => r.RouteID == o.RouteID)).RequiredVehicleType;
+                            o.TotalYearlyPrice = o.OperationPrice * ((listOfRouteNumbers.Find(r => r.RouteID == o.RouteID)).TotalHours);
                             Offer newOffer = new Offer(o.OfferReferenceNumber, o.OperationPrice, o.RouteID, o.UserID, o.RouteNumberPriority, o.ContractorPriority, contractor, o.RequiredVehicleType);
                             listOfOffers.Add(newOffer);
                         }
@@ -89,6 +90,7 @@ namespace DataAccess
                         if (offer.RouteID == routeNumber.RouteID)
                         {
                             routeNumber.offers.Add(offer);
+
                         }
                     }
                 }
@@ -118,6 +120,9 @@ namespace DataAccess
                 {
                     RouteID = TryParseToIntElseZero(x[0]),
                     RequiredVehicleType = TryParseToIntElseZero(x[1]),
+                    HoursOnWeekdays = TryParseToIntElseZero(x[2]),
+                    HoursOnWeekends = TryParseToIntElseZero(x[3]),
+                    NumberOfVacationWeeks = TryParseToIntElseZero(x[3])
                 });
                 foreach (var r in data)
                 {

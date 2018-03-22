@@ -16,32 +16,19 @@
         public Contractor Contractor {get;set;}
         public float TotalYearlyPrice { get; set; }
 
-        public Offer() { }
+        public Offer() { }    
+
         public Offer(string referenceNumber, float operationPrice, int routeID, string userID, int routeNumberPriority, int contractorPriority, Contractor contractor, int requiredVehicleType = 0)
         {
-            this.OfferReferenceNumber = referenceNumber;
-            this.OperationPrice = operationPrice;
-            this.RouteID = routeID;        
-            this.UserID = userID;       
-            this.RouteNumberPriority = routeNumberPriority;
-            this.ContractorPriority = contractorPriority;
-            this.Contractor = contractor;
-            this.RequiredVehicleType = requiredVehicleType;
+            OfferReferenceNumber = referenceNumber;
+            OperationPrice = operationPrice;
+            RouteID = routeID;
+            UserID = userID;
+            RouteNumberPriority = routeNumberPriority;
+            ContractorPriority = contractorPriority;
+            Contractor = contractor;
+            RequiredVehicleType = requiredVehicleType;
             IsEligible = true;            
-        }
-
-        public Offer(float totalYearlyPrice, string referenceNumber, float operationPrice, int routeID, string userID, int routeNumberPriority, int contractorPriority, Contractor contractor, int requiredVehicleType = 0)
-        {
-            this.OfferReferenceNumber = referenceNumber;
-            this.OperationPrice = operationPrice;
-            this.RouteID = routeID;
-            this.UserID = userID;
-            this.RouteNumberPriority = routeNumberPriority;
-            this.ContractorPriority = contractorPriority;
-            this.Contractor = contractor;
-            this.RequiredVehicleType = requiredVehicleType;
-            IsEligible = true;
-            TotalYearlyPrice = totalYearlyPrice;
         }
     }
 }

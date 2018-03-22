@@ -31,7 +31,7 @@ namespace Logic
             SortRouteNumberList(routeNumberList);
             List<Offer> offersToAssign = new List<Offer>();
 
-            selection.CalculateOperationPriceDifferenceForOffers(sortedRouteNumberList);
+            selection.CalculateTotalYearlyPriceDifferenceForOffers(sortedRouteNumberList);
             int lengthOfSortedRouteNumberList = sortedRouteNumberList.Count();
             for (int i = 0; i < lengthOfSortedRouteNumberList; i++)
             {

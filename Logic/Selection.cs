@@ -9,7 +9,7 @@ namespace Logic
     {
         ListContainer listContainer = ListContainer.GetInstance();
 
-        public void CalculateOperationPriceDifferenceForOffers(List<RouteNumber> sortedRouteNumberList)
+        public void CalculateTotalYearlyPriceDifferenceForOffers(List<RouteNumber> sortedRouteNumberList)
         {
             const int LAST_OPTION_VALUE = int.MaxValue;
             foreach (RouteNumber routeNumber in sortedRouteNumberList)
@@ -25,14 +25,14 @@ namespace Logic
                 }
                 else if (routeNumber.offers.Count == 2)
                 {
-                    if (routeNumber.offers[0].OperationPrice == routeNumber.offers[1].OperationPrice)
+                    if (routeNumber.offers[0].TotalYearlyPrice == routeNumber.offers[1].TotalYearlyPrice)
                     {
                         routeNumber.offers[0].DifferenceToNextOffer = LAST_OPTION_VALUE;
                         routeNumber.offers[1].DifferenceToNextOffer = LAST_OPTION_VALUE;
                     }
                     else
                     {
-                        routeNumber.offers[0].DifferenceToNextOffer = routeNumber.offers[1].OperationPrice - routeNumber.offers[0].OperationPrice;
+                        routeNumber.offers[0].DifferenceToNextOffer = routeNumber.offers[1].TotalYearlyPrice - routeNumber.offers[0].TotalYearlyPrice;
                         routeNumber.offers[1].DifferenceToNextOffer = LAST_OPTION_VALUE;
                     }
                 }
@@ -42,11 +42,11 @@ namespace Logic
                     {
                         float difference = 0;
                         int j = i + 1;
-                        if (routeNumber.offers[i].OperationPrice != routeNumber.offers[numbersToCalc].OperationPrice)
+                        if (routeNumber.offers[i].TotalYearlyPrice != routeNumber.offers[numbersToCalc].TotalYearlyPrice)
                         {
                             while (difference == 0 && j <= numbersToCalc)
                             {
-                                difference = routeNumber.offers[j].OperationPrice - routeNumber.offers[i].OperationPrice;
+                                difference = routeNumber.offers[j].TotalYearlyPrice - routeNumber.offers[i].TotalYearlyPrice;
                                 j++;
                             }
                         }
@@ -104,20 +104,20 @@ namespace Logic
             List<Offer> winningOffers = new List<Offer>();
             List<Offer> listOfOffersWithLowestPrice = new List<Offer>();
             int lengthOfOffers = routeNumber.offers.Count();
-            float lowestEligibleOperationPrice = 0;
+            float lowestEligibleTotalYearlyPrice = 0;
             bool cheapestNotFound = true;
 
             for (int i = 0; i < lengthOfOffers; i++)
             {
                 if (routeNumber.offers[i].IsEligible && cheapestNotFound)
                 {
-                    lowestEligibleOperationPrice = routeNumber.offers[i].OperationPrice;
+                    lowestEligibleTotalYearlyPrice = routeNumber.offers[i].TotalYearlyPrice;
                     cheapestNotFound = false;
                 }
             }
             foreach (Offer offer in routeNumber.offers)
             {
-                if (offer.IsEligible && offer.OperationPrice == lowestEligibleOperationPrice)
+                if (offer.IsEligible && offer.TotalYearlyPrice == lowestEligibleTotalYearlyPrice)
                 {
                     listOfOffersWithLowestPrice.Add(offer);
                 }
